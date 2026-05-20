@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
       <div className="container">
         <div className={styles.footerGrid}>
           <div className={styles.footerInfo}>
-            <h2 className={styles.logoText}>BAHRI</h2>
+            <h2 className={styles.logoText}>NEXACRUDE</h2>
             <p>A global leader in logistics and shipping, driving the maritime industry forward with innovation and excellence.</p>
             <div className={styles.socials}>
               <Mail size={20} />
@@ -31,9 +31,9 @@ const Footer: React.FC = () => {
           <div className={styles.linksSection}>
             <h3>Services</h3>
             <ul>
-              <li><a href="#">Bahri Oil</a></li>
-              <li><a href="#">Bahri Logistics</a></li>
-              <li><a href="#">Bahri Chemicals</a></li>
+              <li><a href="#">NexaCrude Oil</a></li>
+              <li><a href="#">NexaCrude Logistics</a></li>
+              <li><a href="#">NexaCrude Chemicals</a></li>
               <li><a href="#">Ship Management</a></li>
             </ul>
           </div>
@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
         </div>
         
         <div className={styles.bottomBar}>
-          <p>&copy; 2026 Bahri. All rights reserved. Saudi Vision 2030</p>
+          <p>&copy; 2026 NexaCrude. All rights reserved. Saudi Vision 2030</p>
         </div>
       </div>
     </footer>

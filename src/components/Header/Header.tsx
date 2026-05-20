@@ -31,13 +31,13 @@ const Header: React.FC = () => {
           <nav className={styles.nav}>
             <Link to="/" className={styles.logo}>
               <div className={styles.logoBox}>
-                <span className={styles.logoText}>BAHRI</span>
+                <span className={styles.logoText}>NEXACRUDE</span>
               </div>
             </Link>
 
             <div className={`${styles.navLinks} ${isMenuOpen ? styles.active : ''}`}>
-              <Link to="/about" onClick={() => setIsMenuOpen(false)}>About Bahri</Link>
-              <Link to="/units" onClick={() => setIsMenuOpen(false)}>Bahri Units</Link>
+              <Link to="/about" onClick={() => setIsMenuOpen(false)}>About NexaCrude</Link>
+              <Link to="/units" onClick={() => setIsMenuOpen(false)}>NexaCrude Units</Link>
               <Link to="/logistics" onClick={() => setIsMenuOpen(false)}>Logistic Services</Link>
               <Link to="/investors" onClick={() => setIsMenuOpen(false)}>Investor Relations</Link>
               <Link to="/tracking" className={styles.trackingLink} onClick={() => setIsMenuOpen(false)}>Track Shipment</Link>

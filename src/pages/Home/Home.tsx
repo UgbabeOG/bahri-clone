@@ -24,12 +24,12 @@ const slides = [
 ];
 
 const units = [
-  { id: 'oil', name: 'Bahri Oil', desc: 'World leader in VLCC ownership and operation.', image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=600' },
-  { id: 'logistics', name: 'Bahri Logistics', desc: 'Comprehensive freight forwarding and warehousing.', image: 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?auto=format&fit=crop&q=80&w=600' },
-  { id: 'chemicals', name: 'Bahri Chemicals', desc: 'Safe transport of high-value chemical products.', image: 'https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?auto=format&fit=crop&q=80&w=600' },
-  { id: 'drybulk', name: 'Bahri Dry Bulk', desc: 'Reliable shipment of agricultural and mineral bulk.', image: 'https://images.unsplash.com/photo-1454165833069-111d816276d1?auto=format&fit=crop&q=80&w=600' },
+  { id: 'oil', name: 'NexaCrude Oil', desc: 'World leader in VLCC ownership and operation.', image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=600' },
+  { id: 'logistics', name: 'NexaCrude Logistics', desc: 'Comprehensive freight forwarding and warehousing.', image: 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?auto=format&fit=crop&q=80&w=600' },
+  { id: 'chemicals', name: 'NexaCrude Chemicals', desc: 'Safe transport of high-value chemical products.', image: 'https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?auto=format&fit=crop&q=80&w=600' },
+  { id: 'drybulk', name: 'NexaCrude Dry Bulk', desc: 'Reliable shipment of agricultural and mineral bulk.', image: 'https://images.unsplash.com/photo-1454165833069-111d816276d1?auto=format&fit=crop&q=80&w=600' },
   { id: 'ship-mgmt', name: 'Ship Management', desc: 'Expert technical and crew management services.', image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=600' },
-  { id: 'marine', name: 'Bahri Marine', desc: 'Specialized offshore and subsea support services.', image: 'https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?auto=format&fit=crop&q=80&w=600' }
+  { id: 'marine', name: 'NexaCrude Marine', desc: 'Specialized offshore and subsea support services.', image: 'https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?auto=format&fit=crop&q=80&w=600' }
 ];
 
 const Home: React.FC = () => {
@@ -57,7 +57,7 @@ const Home: React.FC = () => {
                 <span className={styles.slideCounter}>0{index + 1}/0{slides.length}</span>
                 <h1>{slide.title}</h1>
                 <p>{slide.subtitle}</p>
-                <button className="btn btn-outline">About Bahri</button>
+                <button className="btn btn-outline">About NexaCrude</button>
               </div>
             </div>
           </div>
