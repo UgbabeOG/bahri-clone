@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Package, MapPin, Truck, CheckCircle, Clock, Play, RotateCcw } from 'lucide-react';
+import { Search, Package, MapPin, Truck, CheckCircle, Clock } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import styles from './Tracking.module.css';
 
@@ -7,7 +7,6 @@ const Tracking: React.FC = () => {
   const [trackingId, setTrackingId] = useState('');
   const [showStatus, setShowStatus] = useState(false);
   const [progress, setProgress] = useState(0); // 0 to 100
-  const [isSimulating, setIsSimulating] = useState(false);
   const { t } = useTranslation();
 
   const handleSearch = (e: React.FormEvent) => {
@@ -20,15 +19,13 @@ const Tracking: React.FC = () => {
 
   useEffect(() => {
     let interval: number;
-    if (isSimulating && progress < 100) {
+    if (showStatus && progress < 100) {
       interval = setInterval(() => {
         setProgress((prev) => Math.min(prev + 0.5, 100));
       }, 50); // Simulates 5 days in ~10 seconds
-    } else if (progress >= 100) {
-      setIsSimulating(false);
     }
     return () => clearInterval(interval);
-  }, [isSimulating, progress]);
+  }, [showStatus, progress]);
 
   // Coordinates for the ports in the SVG (viewBox="0 0 800 400")
   const busan = { x: 600, y: 150 };
@@ -86,29 +83,11 @@ const Tracking: React.FC = () => {
           <div className="container">
             <div className={styles.mapContainer}>
               <div className={styles.mapHeader}>
-                <div>
-                  <h3>{t('tracking.live_simulation')}: {trackingId}</h3>
-                  <p>{t('tracking.current_day', { day: currentDay > 5 ? 5 : currentDay })}</p>
+                  <div>
+                    <h3>{t('tracking.live_simulation')}: {trackingId}</h3>
+                    <p>{t('tracking.current_day', { day: currentDay > 5 ? 5 : currentDay })}</p>
+                  </div>
                 </div>
-                <div className={styles.mapControls}>
-                  <button 
-                    className={styles.controlBtn} 
-                    onClick={() => setIsSimulating(!isSimulating)}
-                    disabled={progress >= 100}
-                  >
-                    <Play size={18} fill={isSimulating ? 'currentColor' : 'none'} />
-                    {isSimulating ? t('tracking.pause') : t('tracking.start_voyage')}
-                  </button>
-                  <button 
-                    className={styles.controlBtn} 
-                    onClick={() => {setProgress(0); setIsSimulating(false);}}
-                  >
-                    <RotateCcw size={18} />
-                    {t('tracking.reset')}
-                  </button>
-                </div>
-              </div>
-
               <div className={styles.mapWrapper}>
                 <svg viewBox="0 0 800 400" className={styles.svgMap}>
                   {/* Water Background */}
