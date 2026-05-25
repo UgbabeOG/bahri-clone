@@ -65,9 +65,10 @@ const resources = {
       tracking: {
         title: "Track Your Shipment",
         desc: "Enter your tracking number to watch your cargo's 5-day voyage in real-time.",
-        placeholder: "Enter Tracking ID (e.g., KOREA-SH-001)",
+        placeholder: "Enter Tracking ID (e.g., NXC-VLCC-1361)",
         btn: "Track Now",
         live_simulation: "Live Voyage Simulation",
+        not_found: "Vessel not found. Please verify the tracking code.",
         current_day: "Current Day: {{day}} / 5",
         start_voyage: "Start Voyage",
         pause: "Pause",
@@ -162,9 +163,10 @@ const resources = {
       tracking: {
         title: "追踪您的货物",
         desc: "输入您的追踪号码，实时观看您货物为期5天的航程。",
-        placeholder: "输入追踪ID（例如：KOREA-SH-001）",
+        placeholder: "输入追踪ID（例如：NXC-VLCC-3321）",
         btn: "立即追踪",
         live_simulation: "实时航程模拟",
+        not_found: "未找到该船舶。请核实追踪代码。",
         current_day: "当前天数：第 {{day}} 天 / 共 5 天",
         start_voyage: "开始航行",
         pause: "暂停",

@@ -1,0 +1,409 @@
+.logisticsPage {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.hero {
+  background-image: linear-gradient(180deg, rgba(0, 34, 102, 0.9), rgba(0, 34, 102, 0.45)), url('/assets/images/logistics.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 140px 0 100px;
+  color: #ffffff;
+}
+
+.heroContent {
+  max-width: 720px;
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #dbeafe;
+  font-size: 14px;
+  margin-bottom: 24px;
+  letter-spacing: 0.02em;
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem, 4vw, 4.5rem);
+  line-height: 1.05;
+  margin-bottom: 22px;
+}
+
+.hero p {
+  max-width: 620px;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  opacity: 0.95;
+  margin-bottom: 32px;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.heroStats {
+  padding: 50px 0 30px;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(180px, 1fr));
+  gap: 18px;
+}
+
+.statCard {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px 24px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+}
+
+.statNumber {
+  display: block;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #003366;
+}
+
+.statLabel {
+  display: block;
+  margin-top: 10px;
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+.servicesSection {
+  padding: 60px 0;
+}
+
+.sectionHeader {
+  max-width: 760px;
+  margin-bottom: 40px;
+}
+
+.sectionHeader h2 {
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  color: #0f172a;
+  margin-bottom: 18px;
+}
+
+.sectionHeader p {
+  color: #475569;
+  line-height: 1.8;
+}
+
+.serviceCards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.serviceCard {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.serviceCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+}
+
+.serviceIcon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: #eff6ff;
+  color: #003366;
+  margin-bottom: 20px;
+}
+
+.serviceCard h3 {
+  margin-bottom: 14px;
+  color: #0f172a;
+}
+
+.serviceCard p {
+  color: #475569;
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+
+.serviceCard ul {
+  display: grid;
+  gap: 10px;
+  color: #334155;
+  padding-left: 18px;
+}
+
+.serviceCard li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.98rem;
+}
+
+.animationSection {
+  padding: 70px 0;
+}
+
+.animationContent {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 30px;
+  align-items: center;
+}
+
+.animationCard {
+  background: #0f172a;
+  border-radius: 24px;
+  padding: 28px;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.maritimeMap {
+  height: 340px;
+  position: relative;
+  background: linear-gradient(180deg, rgba(56, 189, 248, 0.18), rgba(15, 23, 42, 0.24));
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.maritimeMap::before,
+.maritimeMap::after {
+  content: '';
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  filter: blur(40px);
+}
+
+.maritimeMap::before {
+  top: -60px;
+  left: -40px;
+  background: rgba(56, 189, 248, 0.28);
+}
+
+.maritimeMap::after {
+  bottom: -60px;
+  right: -50px;
+  background: rgba(252, 211, 77, 0.18);
+}
+
+.shipPath {
+  position: absolute;
+  top: 55%;
+  left: 10%;
+  width: 82%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.4);
+  filter: blur(0.5px);
+}
+
+.shipIcon,
+.tankerIcon,
+.packagePulse,
+.oilPulse {
+  position: absolute;
+}
+
+.shipIcon {
+  top: 52%;
+  left: 12%;
+  width: 40px;
+  height: 24px;
+  border-radius: 12px 12px 4px 4px;
+  background: #38bdf8;
+  animation: sail 8s linear infinite;
+}
+
+.shipIcon::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 8px;
+  width: 16px;
+  height: 10px;
+  background: #0f172a;
+  border-radius: 4px 4px 0 0;
+}
+
+.tankerIcon {
+  top: 65%;
+  left: 15%;
+  width: 18px;
+  height: 40px;
+  background: #facc15;
+  border-radius: 10px;
+  animation: float 7s ease-in-out infinite;
+}
+
+.packagePulse {
+  top: 22%;
+  left: 70%;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5);
+  animation: pulse 2.5s ease-out infinite;
+}
+
+.oilPulse {
+  top: 38%;
+  left: 80%;
+  width: 18px;
+  height: 18px;
+  background: #38bdf8;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.5);
+  animation: pulse 3s ease-out infinite 0.6s;
+}
+
+.animationStats {
+  display: grid;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.animationStats div {
+  display: flex;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 18px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.animationStats strong {
+  font-size: 2rem;
+  letter-spacing: -0.03em;
+}
+
+.animationStats span {
+  color: #cbd5e1;
+  align-self: center;
+}
+
+.detailsSection {
+  padding: 70px 0 110px;
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 26px;
+}
+
+.detailCard {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 30px;
+  box-shadow: 0 25px 70px rgba(15, 23, 42, 0.08);
+}
+
+.detailCard h3 {
+  margin-bottom: 18px;
+  color: #0f172a;
+}
+
+.detailCard p {
+  color: #475569;
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+
+.detailCard ul {
+  list-style: inside disc;
+  color: #334155;
+  margin-left: 10px;
+  line-height: 1.8;
+}
+
+.detailFeature {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 16px;
+  align-items: start;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+.detailFeature svg {
+  color: #0f172a;
+  margin-top: 4px;
+}
+
+.detailFeature h4 {
+  margin-bottom: 8px;
+}
+
+.detailFeature p {
+  margin-bottom: 0;
+  color: #475569;
+}
+
+@keyframes sail {
+  0% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(340px) translateY(-6px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6); }
+  70% { box-shadow: 0 0 0 26px rgba(255, 255, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+
+@media (max-width: 992px) {
+  .statsGrid,
+  .serviceCards,
+  .animationContent,
+  .detailsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-top: 100px;
+  }
+
+  .heroActions {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .hero h1 {
+    font-size: 2.4rem;
+  }
+
+  .statCard,
+  .serviceCard,
+  .detailCard {
+    padding: 24px;
+  }
+
+  .maritimeMap {
+    height: 280px;
+  }
+}

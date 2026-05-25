@@ -53,17 +53,31 @@
   background: var(--accent-light);
 }
 
+.notFoundBanner {
+  padding: 0 0 40px;
+}
+
+.notFoundCard {
+  background: #ffe6e6;
+  color: #9b1c1c;
+  padding: 20px 24px;
+  border-radius: 16px;
+  border: 1px solid #f5c2c2;
+  text-align: center;
+  font-weight: 700;
+}
+
 .mapContainer {
-  background: var(--secondary);
-  border-radius: 12px;
+  background: linear-gradient(180deg, #fafafa 0%, #f7f9fc 100%);
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
   margin-bottom: 30px;
 }
 
 .mapHeader {
-  padding: 20px 30px;
-  border-bottom: 1px solid #eee;
+  padding: 24px 30px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -73,28 +87,35 @@
   color: var(--primary);
 }
 
+.mapHeaderRight {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
 .mapControls {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
 .controlBtn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 16px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  background: white;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: #ffffff;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-dark);
-  transition: var(--transition);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .controlBtn:hover:not(:disabled) {
-  background: var(--accent-light);
-  border-color: var(--primary);
+  background: #f8fbff;
+  box-shadow: 0 8px 16px rgba(15, 23, 42, 0.08);
 }
 
 .controlBtn:disabled {
@@ -107,31 +128,54 @@
   position: relative;
 }
 
+.svgViewport {
+  border-radius: 18px;
+  overflow: hidden;
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.18), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.08), transparent 20%);
+  position: relative;
+}
+
+.zoomTarget {
+  transform-origin: center center;
+  transition: transform 0.2s ease;
+}
+
+.mapOverlay {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  background: rgba(15, 23, 42, 0.75);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  backdrop-filter: blur(10px);
+}
+
 .svgMap {
   width: 100%;
   height: auto;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.mapStatus {
-  background: rgba(255,255,255,0.85);
-  padding: 12px 18px;
-  border-radius: 999px;
-  font-weight: 700;
-  color: var(--primary);
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  display: block;
 }
 
 .waveLines path {
   fill: none;
-  stroke: rgba(255,255,255,0.75);
-  stroke-width: 2;
+  stroke: rgba(255,255,255,0.42);
+  stroke-width: 1.6;
 }
 
-.portHalo,
-.portHaloActive {
-  fill: rgba(59, 130, 246, 0.2);
+.portMarker,
+.portMarkerActive {
+  fill: rgba(59, 130, 246, 0.18);
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.portMarker:hover,
+.portMarkerActive:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
 }
 
 .portDot {
@@ -145,13 +189,67 @@
 .portLabel {
   font-size: 12px;
   font-weight: 700;
-  fill: var(--primary);
+  fill: #0f172a;
+}
+
+.shipGroup {
+  cursor: pointer;
+}
+
+.shipGroup:hover rect {
+  fill: #111827;
+}
+
+.shipInfoPanel {
+  margin-top: 26px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 22px 24px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  max-width: 880px;
+}
+
+.shipInfoPanel h4 {
+  margin: 0 0 18px;
+  color: var(--primary);
+}
+
+.detailRow {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 12px 24px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.detailRow:last-of-type {
+  border-bottom: none;
+}
+
+.detailKey {
+  color: var(--text-light);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.detailValue {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.detailNote {
+  margin-top: 16px;
+  color: var(--text-light);
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .voyageInfo {
   display: flex;
   gap: 30px;
-  margin-top: 20px;
+  margin-top: 24px;
 }
 
 .infoCard {
@@ -160,8 +258,8 @@
   align-items: center;
   gap: 15px;
   background: var(--accent-light);
-  padding: 15px 20px;
-  border-radius: 8px;
+  padding: 18px 22px;
+  border-radius: 14px;
 }
 
 .infoIcon {
@@ -223,6 +321,11 @@
 
 @media (max-width: 768px) {
   .mapHeader { flex-direction: column; gap: 15px; text-align: center; }
-  .voyageInfo { flex-direction: column; gap: 10px; }
-  .statusTimeline { flex-direction: column; gap: 20px; }
+  .mapHeaderRight { flex-direction: column; align-items: stretch; }
+  .mapControls { justify-content: center; }
+  .shipInfoPanel { padding: 18px 18px; }
+  .detailRow { grid-template-columns: 1fr; }
+  .detailKey { margin-bottom: 6px; }
+  .voyageInfo { flex-direction: column; gap: 15px; }
+  .statusTimeline { flex-direction: column; gap: 16px; }
 }
