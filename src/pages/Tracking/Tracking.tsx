@@ -11,6 +11,7 @@ const Tracking: React.FC = () => {
   const [startTime, setStartTime] = useState<number | null>(null);
   const [zoomLevel, setZoomLevel] = useState(1);
   const [activeInfo, setActiveInfo] = useState<'ship' | 'busan' | 'qingdao' | 'shanghai'>('ship');
+  const [showMapOverlay, setShowMapOverlay] = useState(true);
   const { t } = useTranslation();
 
   const totalSimulatedDuration = 5 * 24 * 60 * 60 * 1000; // 5 days real time
@@ -34,6 +35,7 @@ const Tracking: React.FC = () => {
       setStartTime(Date.now());
       setActiveInfo('ship');
       setZoomLevel(1);
+      setShowMapOverlay(true);
       return;
     }
 
@@ -65,6 +67,15 @@ const Tracking: React.FC = () => {
     }
     return () => clearInterval(interval);
   }, [showStatus, startTime]);
+
+  useEffect(() => {
+    if (showMapOverlay) {
+      const timer = setTimeout(() => {
+        setShowMapOverlay(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showMapOverlay]);
 
   // Coordinates for the ports in the SVG (viewBox="0 0 800 400")
   const busan = { x: 600, y: 150 };
@@ -113,7 +124,7 @@ const Tracking: React.FC = () => {
     ship: {
       title: 'Nexa Voyager',
       status: progress < 100 ? 'Underway, 18 knots' : 'Docked in Shanghai',
-      cargo: '11,200 TEU | electronics & raw materials',
+      cargo: '11,200 TEU | Crude Oil & Other Minerals',
       destination: progress < 100 ? 'Shanghai Port' : 'Shanghai Port - Arrived',
       eta: formattedEta,
       notes: 'Route tracking updated every second.'
@@ -137,7 +148,7 @@ const Tracking: React.FC = () => {
       status: 'Destination port',
       detail: 'Terminal 8 assigned',
       arrival: progress < 100 ? 'ETA on arrival' : 'Arrived today',
-      notes: 'World’s busiest container port.'
+      notes: 'World's busiest container port.'
     }
   };
 
@@ -275,9 +286,11 @@ const Tracking: React.FC = () => {
                       </g>
                     </svg>
                   </div>
-                  <div className={styles.mapOverlay}>
-                    <p>Click the ship or port dots to see live voyage details.</p>
-                  </div>
+                  {showMapOverlay && (
+                    <div className={styles.mapOverlay}>
+                      <p>Click the ship or port dots to see live voyage details.</p>
+                    </div>
+                  )}
                 </div>
 
                 <div className={styles.shipInfoPanel}>
