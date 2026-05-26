@@ -137,7 +137,7 @@ const Tracking: React.FC = () => {
       status: 'Destination port',
       detail: 'Terminal 8 assigned',
       arrival: progress < 100 ? 'ETA on arrival' : 'Arrived today',
-      notes: 'World’s busiest container port.'
+      notes: "World's busiest container port."
     }
   };
 
