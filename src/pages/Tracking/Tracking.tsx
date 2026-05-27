@@ -477,53 +477,54 @@ const Tracking: React.FC = () => {
                           {t("tracking.shanghai")}
                         </text>
                       </g>
-                      <g
-                        transform={`translate(${shipPos.x - 18}, ${shipPos.y - 12})`}
-                        filter="url(#shipShadow)"
-                        className={styles.shipGroup}
-                        onClick={() => setActiveInfo("ship")}
-                      >
-                        <path
-                          d="M2,18 Q10,12 18,12 Q26,12 34,18 L32,22 Q18,28 6,22 Z"
-                          fill="#0f172a"
-                          stroke="#60a5fa"
-                          strokeWidth="0.7"
-                          className={styles.shipBody}
-                        />
-                        <line
-                          x1="18"
-                          y1="11"
-                          x2="18"
-                          y2="-14"
-                          stroke="#60a5fa"
-                          strokeWidth="3"
-                          strokeLinecap="round"
-                        />
-                        <path
-                          d="M18,-14 L28,-4 L18,-4 Z"
-                          fill="#38bdf8"
-                          opacity="0.95"
-                        />
-                        <path
-                          d="M18,-14 L12,-4 L18,-4 Z"
-                          fill="#0f172a"
-                          opacity="0.18"
-                        />
-                        <path
-                          d="M2,20 C10,14 18,20 26,14 S42,20 50,14"
-                          fill="none"
-                          stroke="#60a5fa"
-                          strokeWidth="2"
-                          className={styles.shipWave}
-                        />
-                        <circle
-                          cx="18"
-                          cy="8"
-                          r="8"
-                          fill="rgba(56, 189, 248, 0.2)"
-                          className={styles.shipGlow}
-                        />
-                        <circle cx="18" cy="8" r="3" fill="#38bdf8" />
+                      <g transform={`translate(${shipPos.x}, ${shipPos.y})`}>
+                        <g
+                          filter="url(#shipShadow)"
+                          className={styles.shipGroup}
+                          onClick={() => setActiveInfo("ship")}
+                        >
+                          <path
+                            d="M-16,8 Q-8,2 0,2 Q8,2 16,8 L14,12 Q0,18 -14,12 Z"
+                            fill="#0f172a"
+                            stroke="#60a5fa"
+                            strokeWidth="0.7"
+                            className={styles.shipBody}
+                          />
+                          <line
+                            x1="0"
+                            y1="1"
+                            x2="0"
+                            y2="-24"
+                            stroke="#60a5fa"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                          />
+                          <path
+                            d="M0,-24 L10,-14 L0,-14 Z"
+                            fill="#38bdf8"
+                            opacity="0.95"
+                          />
+                          <path
+                            d="M0,-24 L-10,-14 L0,-14 Z"
+                            fill="#0f172a"
+                            opacity="0.18"
+                          />
+                          <path
+                            d="M-16,10 C-8,4 0,10 8,4 S24,10 32,4"
+                            fill="none"
+                            stroke="#60a5fa"
+                            strokeWidth="2"
+                            className={styles.shipWave}
+                          />
+                          <circle
+                            cx="0"
+                            cy="-2"
+                            r="8"
+                            fill="rgba(56, 189, 248, 0.2)"
+                            className={styles.shipGlow}
+                          />
+                          <circle cx="0" cy="-2" r="3" fill="#38bdf8" />
+                        </g>
                       </g>
                     </svg>
                   </div>
