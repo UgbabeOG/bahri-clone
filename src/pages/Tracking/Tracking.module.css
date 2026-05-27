@@ -158,9 +158,10 @@
   cursor: pointer;
   font-weight: 700;
   color: var(--text-dark);
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), 
-              box-shadow 0.2s ease, 
-              background 0.2s ease;
+  transition:
+    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.2s ease,
+    background 0.2s ease;
   will-change: transform;
 }
 
@@ -187,8 +188,17 @@
 .svgViewport {
   border-radius: 18px;
   overflow: hidden;
-  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.18), transparent 35%),
-    radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.08), transparent 20%);
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(255, 255, 255, 0.18),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(255, 255, 255, 0.08),
+      transparent 20%
+    );
   position: relative;
   transition: transform 0.1s ease-out;
   will-change: transform;
@@ -211,8 +221,9 @@
   border-radius: 999px;
   font-size: 13px;
   backdrop-filter: blur(10px);
-  animation: slideInUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), 
-             fadeOut 0.5s ease-in 2.5s both;
+  animation:
+    slideInUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    fadeOut 0.5s ease-in 2.5s both;
   z-index: 10;
 }
 
@@ -254,9 +265,10 @@
 .portMarkerActive {
   fill: rgba(59, 130, 246, 0.18);
   cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
-              opacity 0.3s ease,
-              filter 0.3s ease;
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.3s ease,
+    filter 0.3s ease;
   will-change: transform;
   filter: drop-shadow(0 0 0px rgba(59, 130, 246, 0));
 }
@@ -306,7 +318,7 @@
   animation: shipFloatHover 0.6s ease-out;
 }
 
-.shipGroup:hover rect {
+.shipGroup:hover .shipBody {
   fill: #1f2937;
 }
 
@@ -418,7 +430,11 @@
   transform: translateY(-4px) scale(1.02);
   box-shadow: 0 12px 24px rgba(59, 130, 246, 0.15);
   border-color: rgba(59, 130, 246, 0.2);
-  background: linear-gradient(135deg, var(--accent-light), rgba(59, 130, 246, 0.05));
+  background: linear-gradient(
+    135deg,
+    var(--accent-light),
+    rgba(59, 130, 246, 0.05)
+  );
 }
 
 .infoIcon {
@@ -611,7 +627,8 @@
 }
 
 @keyframes shimmer {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -620,7 +637,8 @@
 }
 
 @keyframes waveFlow {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.6;
   }
   50% {
@@ -656,7 +674,8 @@
 }
 
 @keyframes dotPulse {
-  0%, 100% {
+  0%,
+  100% {
     r: 7;
   }
   50% {
@@ -665,7 +684,8 @@
 }
 
 @keyframes shipFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
@@ -686,7 +706,8 @@
 }
 
 @keyframes shipGlowPulse {
-  0%, 100% {
+  0%,
+  100% {
     r: 8;
     fill: rgba(56, 189, 248, 0.2);
   }
@@ -709,7 +730,8 @@
 }
 
 @keyframes stepPulse {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
   }
   50% {
