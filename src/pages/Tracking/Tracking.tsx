@@ -11,6 +11,9 @@ const Tracking: React.FC = () => {
   const [startTime, setStartTime] = useState<number | null>(null);
   const [zoomLevel, setZoomLevel] = useState(1);
   const [activeInfo, setActiveInfo] = useState<'ship' | 'busan' | 'qingdao' | 'shanghai'>('ship');
+  const [showMapOverlay, setShowMapOverlay] = useState(true);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [hoveredPort, setHoveredPort] = useState<string | null>(null);
   const { t } = useTranslation();
 
   const totalSimulatedDuration = 5 * 24 * 60 * 60 * 1000; // 5 days real time
@@ -34,6 +37,7 @@ const Tracking: React.FC = () => {
       setStartTime(Date.now());
       setActiveInfo('ship');
       setZoomLevel(1);
+      setShowMapOverlay(true);
       return;
     }
 
@@ -54,6 +58,13 @@ const Tracking: React.FC = () => {
     });
   };
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    setMousePos({ x, y });
+  };
+
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
     if (showStatus && startTime !== null) {
@@ -65,6 +76,15 @@ const Tracking: React.FC = () => {
     }
     return () => clearInterval(interval);
   }, [showStatus, startTime]);
+
+  useEffect(() => {
+    if (showMapOverlay) {
+      const timer = setTimeout(() => {
+        setShowMapOverlay(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showMapOverlay]);
 
   // Coordinates for the ports in the SVG (viewBox="0 0 800 400")
   const busan = { x: 600, y: 150 };
@@ -113,7 +133,7 @@ const Tracking: React.FC = () => {
     ship: {
       title: 'Nexa Voyager',
       status: progress < 100 ? 'Underway, 18 knots' : 'Docked in Shanghai',
-      cargo: '11,200 TEU | electronics & raw materials',
+      cargo: '11,200 TEU | Crude Oil & Other Minerals',
       destination: progress < 100 ? 'Shanghai Port' : 'Shanghai Port - Arrived',
       eta: formattedEta,
       notes: 'Route tracking updated every second.'
@@ -142,6 +162,19 @@ const Tracking: React.FC = () => {
   };
 
   const activeLocation = locationDetails[activeInfo];
+
+  // Calculate 3D perspective transform based on mouse position
+  const getPerspectiveTransform = () => {
+    if (!showStatus) return {};
+    const centerX = 400;
+    const centerY = 200;
+    const maxRotate = 2;
+    const rotateX = ((mousePos.y - centerY) / 200) * maxRotate;
+    const rotateY = ((mousePos.x - centerX) / 400) * maxRotate;
+    return {
+      transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+    };
+  };
 
   return (
     <div className={styles.trackingPage}>
@@ -187,7 +220,10 @@ const Tracking: React.FC = () => {
                 </div>
                 <div className={styles.mapHeaderRight}>
                   <div className={styles.mapStatus}>
-                    <span>{`Progress: ${progressPercent}%`}</span>
+                    <span className={styles.progressText}>{`Progress: ${progressPercent}%`}</span>
+                    <div className={styles.progressBar}>
+                      <div className={styles.progressFill} style={{ width: `${progressPercent}%` }}></div>
+                    </div>
                   </div>
                   <div className={styles.mapControls}>
                     <button type="button" className={styles.controlBtn} onClick={() => handleZoom('out')} disabled={zoomLevel <= minZoom}>
@@ -204,7 +240,11 @@ const Tracking: React.FC = () => {
               </div>
 
               <div className={styles.mapWrapper}>
-                <div className={styles.svgViewport}>
+                <div 
+                  className={styles.svgViewport}
+                  onMouseMove={handleMouseMove}
+                  style={getPerspectiveTransform()}
+                >
                   <div className={styles.zoomTarget} style={{ transform: `scale(${zoomLevel})` }}>
                     <svg viewBox="0 0 800 400" className={styles.svgMap}>
                       <defs>
@@ -218,6 +258,13 @@ const Tracking: React.FC = () => {
                         </linearGradient>
                         <filter id="shipShadow" x="-30%" y="-30%" width="160%" height="160%">
                           <feDropShadow dx="0" dy="6" stdDeviation="6" floodColor="#0f172a" floodOpacity="0.18" />
+                        </filter>
+                        <filter id="glowEffect" x="-50%" y="-50%" width="200%" height="200%">
+                          <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+                          <feMerge>
+                            <feMergeNode in="coloredBlur" />
+                            <feMergeNode in="SourceGraphic" />
+                          </feMerge>
                         </filter>
                         <marker id="arrowTip" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto" markerUnits="strokeWidth">
                           <path d="M0,0 L10,5 L0,10 Z" fill="#ffffff" />
@@ -247,19 +294,44 @@ const Tracking: React.FC = () => {
                         strokeLinecap="round"
                         markerEnd="url(#arrowTip)"
                         opacity="0.9"
+                        className={styles.routePath}
                       />
                       <g>
-                        <circle onClick={() => setActiveInfo('busan')} className={styles.portMarker} cx={busan.x} cy={busan.y} r="14" />
+                        <circle 
+                          onClick={() => setActiveInfo('busan')} 
+                          onMouseEnter={() => setHoveredPort('busan')}
+                          onMouseLeave={() => setHoveredPort(null)}
+                          className={`${styles.portMarker} ${hoveredPort === 'busan' ? styles.portMarkerHovered : ''}`}
+                          cx={busan.x} 
+                          cy={busan.y} 
+                          r="14" 
+                        />
                         <circle className={styles.portDot} cx={busan.x} cy={busan.y} r="6" />
                         <text x={busan.x + 10} y={busan.y - 12} className={styles.portLabel}>{t('tracking.busan')}</text>
                       </g>
                       <g>
-                        <circle onClick={() => setActiveInfo('qingdao')} className={styles.portMarker} cx={qingdao.x} cy={qingdao.y} r="14" />
+                        <circle 
+                          onClick={() => setActiveInfo('qingdao')}
+                          onMouseEnter={() => setHoveredPort('qingdao')}
+                          onMouseLeave={() => setHoveredPort(null)}
+                          className={`${styles.portMarker} ${hoveredPort === 'qingdao' ? styles.portMarkerHovered : ''}`}
+                          cx={qingdao.x} 
+                          cy={qingdao.y} 
+                          r="14" 
+                        />
                         <circle className={styles.portDot} cx={qingdao.x} cy={qingdao.y} r="6" />
                         <text x={qingdao.x - 60} y={qingdao.y - 12} className={styles.portLabel}>{t('tracking.qingdao')}</text>
                       </g>
                       <g>
-                        <circle onClick={() => setActiveInfo('shanghai')} className={styles.portMarkerActive} cx={shanghai.x} cy={shanghai.y} r="16" />
+                        <circle 
+                          onClick={() => setActiveInfo('shanghai')}
+                          onMouseEnter={() => setHoveredPort('shanghai')}
+                          onMouseLeave={() => setHoveredPort(null)}
+                          className={`${styles.portMarkerActive} ${hoveredPort === 'shanghai' ? styles.portMarkerHovered : ''}`}
+                          cx={shanghai.x} 
+                          cy={shanghai.y} 
+                          r="16" 
+                        />
                         <circle className={styles.portDotActive} cx={shanghai.x} cy={shanghai.y} r="7" />
                         <text x={shanghai.x + 10} y={shanghai.y - 12} className={styles.portLabel}>{t('tracking.shanghai')}</text>
                       </g>
@@ -269,15 +341,18 @@ const Tracking: React.FC = () => {
                         className={styles.shipGroup}
                         onClick={() => setActiveInfo('ship')}
                       >
-                        <rect width="36" height="14" rx="4" fill="#0f172a" />
+                        <circle cx="18" cy="8" r="8" fill="rgba(56, 189, 248, 0.2)" className={styles.shipGlow} />
+                        <rect width="36" height="14" rx="4" fill="#0f172a" className={styles.shipBody} />
                         <path d="M8,0 L12,-6 L24,-6 L28,0" fill="#0f172a" />
                         <circle cx="18" cy="8" r="3" fill="#38bdf8" />
                       </g>
                     </svg>
                   </div>
-                  <div className={styles.mapOverlay}>
-                    <p>Click the ship or port dots to see live voyage details.</p>
-                  </div>
+                  {showMapOverlay && (
+                    <div className={styles.mapOverlay}>
+                      <p>Click the ship or port dots to see live voyage details.</p>
+                    </div>
+                  )}
                 </div>
 
                 <div className={styles.shipInfoPanel}>
