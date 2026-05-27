@@ -24,7 +24,7 @@ const Header: React.FC = () => {
               <Link to="/faqs">{t('header.faqs')}</Link>
             </div>
             <div className={styles.topBarRight}>
-              <button className={styles.langToggle} onClick={toggleLanguage}>
+              <button type="button" className={styles.langToggle} onClick={toggleLanguage} aria-label="Toggle language">
                 <Globe size={16} />
                 <span>{i18n.language === 'en' ? '中文' : 'English'}</span>
               </button>
@@ -35,7 +35,7 @@ const Header: React.FC = () => {
       
       <div className={styles.mainHeader}>
         <div className="container">
-          <nav className={styles.nav}>
+          <nav className={styles.nav} aria-label="Primary navigation">
             <Link to="/" className={styles.logo}>
               <div className={styles.logoBox}>
                 <span className={styles.logoText}>NEXACRUDE</span>
@@ -51,8 +51,14 @@ const Header: React.FC = () => {
             </div>
 
             <div className={styles.navActions}>
-              <button className={styles.iconBtn}><Search size={20} /></button>
-              <button className={styles.menuBtn} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              <button type="button" className={styles.iconBtn} aria-label="Search site"><Search size={20} /></button>
+              <button
+                type="button"
+                className={styles.menuBtn}
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-expanded={isMenuOpen}
+                aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+              >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
             </div>

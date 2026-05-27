@@ -7,30 +7,30 @@ const slides = [
   {
     titleKey: 'home.slide1_title',
     subtitleKey: 'home.slide1_subtitle',
-    image: 'https://images.unsplash.com/photo-1577705998148-6da4f3963bc8?auto=format&fit=crop&q=80&w=1600',
+    image: '/assets/images/banner-01.jpg',
     color: '#003366'
   },
   {
     titleKey: 'home.slide2_title',
     subtitleKey: 'home.slide2_subtitle',
-    image: 'https://images.unsplash.com/photo-1494412574743-0194852939cf?auto=format&fit=crop&q=80&w=1600',
+    image: '/assets/images/banner-02.jpg',
     color: '#004488'
   },
   {
     titleKey: 'home.slide3_title',
     subtitleKey: 'home.slide3_subtitle',
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1600',
+    image: '/assets/images/banner-03.jpg',
     color: '#002244'
   }
 ];
 
 const units = [
-  { id: 'oil', nameKey: 'home.oil_name', descKey: 'home.oil_desc', image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=600' },
-  { id: 'logistics', nameKey: 'home.logistics_name', descKey: 'home.logistics_desc', image: 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?auto=format&fit=crop&q=80&w=600' },
-  { id: 'chemicals', nameKey: 'home.chemicals_name', descKey: 'home.chemicals_desc', image: 'https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?auto=format&fit=crop&q=80&w=600' },
-  { id: 'drybulk', nameKey: 'home.drybulk_name', descKey: 'home.drybulk_desc', image: 'https://images.unsplash.com/photo-1454165833069-111d816276d1?auto=format&fit=crop&q=80&w=600' },
-  { id: 'ship-mgmt', nameKey: 'home.ship_mgmt_name', descKey: 'home.ship_mgmt_desc', image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=600' },
-  { id: 'marine', nameKey: 'home.marine_name', descKey: 'home.marine_desc', image: 'https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?auto=format&fit=crop&q=80&w=600' }
+  { id: 'oil', nameKey: 'home.oil_name', descKey: 'home.oil_desc', image: '/assets/images/oil.jpg' },
+  { id: 'logistics', nameKey: 'home.logistics_name', descKey: 'home.logistics_desc', image: '/assets/images/logistics.jpg' },
+  { id: 'chemicals', nameKey: 'home.chemicals_name', descKey: 'home.chemicals_desc', image: '/assets/images/chemicals.jpg' },
+  { id: 'drybulk', nameKey: 'home.drybulk_name', descKey: 'home.drybulk_desc', image: '/assets/images/dry-bulk.jpg' },
+  { id: 'ship-mgmt', nameKey: 'home.ship_mgmt_name', descKey: 'home.ship_mgmt_desc', image: '/assets/images/ship-management.jpg' },
+  { id: 'marine', nameKey: 'home.marine_name', descKey: 'home.marine_desc', image: '/assets/images/marine.jpg' }
 ];
 
 const Home: React.FC = () => {
@@ -59,7 +59,7 @@ const Home: React.FC = () => {
                 <span className={styles.slideCounter}>0{index + 1}/0{slides.length}</span>
                 <h1>{t(slide.titleKey)}</h1>
                 <p>{t(slide.subtitleKey)}</p>
-                <button className="btn btn-outline">{t('home.about_btn')}</button>
+                <button type="button" className="btn btn-outline">{t('home.about_btn')}</button>
               </div>
             </div>
           </div>

@@ -6,7 +6,7 @@ import styles from './Logistics.module.css';
 const Logistics: React.FC = () => {
   return (
     <div className={styles.logisticsPage}>
-      <section className={styles.hero}>
+      <section className={styles.hero} aria-label="Logistics overview">
         <div className="container">
           <div className={styles.heroContent}>
             <span className={styles.heroBadge}>#1 Global Shipping Network</span>
@@ -17,7 +17,7 @@ const Logistics: React.FC = () => {
             </p>
             <div className={styles.heroActions}>
               <Link to="/tracking" className="btn">Track a Shipment</Link>
-              <button className="btn btn-outline">Explore Services <ArrowRight size={16} /></button>
+              <button type="button" className="btn btn-outline">Explore Services <ArrowRight size={16} /></button>
             </div>
           </div>
         </div>
@@ -56,7 +56,7 @@ const Logistics: React.FC = () => {
           </div>
 
           <div className={styles.serviceCards}>
-            <article className={styles.serviceCard} style={{ backgroundImage: 'linear-gradient(135deg, rgba(0, 34, 102, 0.85), rgba(0, 51, 153, 0.85)), url(https://images.unsplash.com/photo-1580674285054-bed31e145f59?auto=format&fit=crop&q=80&w=600)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <article className={styles.serviceCard} style={{ backgroundImage: 'linear-gradient(135deg, rgba(0, 34, 102, 0.85), rgba(0, 51, 153, 0.85)), url(/assets/images/logistics.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
               <div className={styles.serviceIcon}><Package size={24} /></div>
               <h3>Package Logistics</h3>
               <p>End-to-end freight forwarding and distribution for retail, industrial and temperature-sensitive goods.</p>
@@ -66,7 +66,7 @@ const Logistics: React.FC = () => {
                 <li><CheckCircle size={14} /> 24/7 digital shipment visibility</li>
               </ul>
             </article>
-            <article className={styles.serviceCard} style={{ backgroundImage: 'linear-gradient(135deg, rgba(0, 34, 102, 0.85), rgba(0, 51, 153, 0.85)), url(https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=600)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <article className={styles.serviceCard} style={{ backgroundImage: 'linear-gradient(135deg, rgba(0, 34, 102, 0.85), rgba(0, 51, 153, 0.85)), url(/assets/images/oil.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
               <div className={styles.serviceIcon}><Droplet size={24} /></div>
               <h3>Crude Oil Shipping</h3>
               <p>Specialized VLCC and Suezmax tankers moving crude across major energy corridors with expert chartering and safety.</p>
@@ -76,7 +76,7 @@ const Logistics: React.FC = () => {
                 <li><CheckCircle size={14} /> Compliance-driven operations</li>
               </ul>
             </article>
-            <article className={styles.serviceCard} style={{ backgroundImage: 'linear-gradient(135deg, rgba(0, 34, 102, 0.85), rgba(0, 51, 153, 0.85)), url(https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?auto=format&fit=crop&q=80&w=600)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <article className={styles.serviceCard} style={{ backgroundImage: 'linear-gradient(135deg, rgba(0, 34, 102, 0.85), rgba(0, 51, 153, 0.85)), url(/assets/images/ship-management.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
               <div className={styles.serviceIcon}><Globe size={24} /></div>
               <h3>Global Reach</h3>
               <p>Trusted across continents with integrated terminals, shore-based logistics and local customs expertise.</p>
@@ -101,12 +101,12 @@ const Logistics: React.FC = () => {
               </p>
             </div>
             <div className={styles.animationCard}>
-              <div className={styles.maritimeMap}>
-                <div className={styles.shipPath}></div>
-                <div className={styles.shipIcon}></div>
-                <div className={styles.tankerIcon}></div>
-                <div className={styles.packagePulse}></div>
-                <div className={styles.oilPulse}></div>
+              <div className={styles.maritimeMap} role="img" aria-label="Animated map showing global shipping corridors">
+                <div className={styles.shipPath} aria-hidden="true"></div>
+                <div className={styles.shipIcon} aria-hidden="true"></div>
+                <div className={styles.tankerIcon} aria-hidden="true"></div>
+                <div className={styles.packagePulse} aria-hidden="true"></div>
+                <div className={styles.oilPulse} aria-hidden="true"></div>
               </div>
               <div className={styles.animationStats}>
                 <div>
