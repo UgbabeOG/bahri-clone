@@ -151,7 +151,7 @@ const Tracking: React.FC = () => {
     ship: {
       title: "Nexa Voyager",
       status: progress < 100 ? "Underway, 18 knots" : "Docked in Shanghai",
-      cargo: "11,200 TEU | Crude Oil & Other Minerals",
+      cargo: "EN590 Diesel 10PPM and Jet Fuel Al",
       destination: progress < 100 ? "Shanghai Port" : "Shanghai Port - Arrived",
       eta: formattedEta,
       notes: "Route tracking updated every second.",
