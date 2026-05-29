@@ -3,34 +3,38 @@ import { ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import styles from './Home.module.css';
 
+const base = import.meta.env.BASE_URL || '/';
+
+const asset = (path: string) => `${base}${path.replace(/^\//, '')}`;
+
 const slides = [
   {
     titleKey: 'home.slide1_title',
     subtitleKey: 'home.slide1_subtitle',
-    image: '/assets/images/banner-01.jpg',
+    video: asset('/assets/videos/bahri-hero-oil.mp4'),
     color: '#003366'
   },
   {
     titleKey: 'home.slide2_title',
     subtitleKey: 'home.slide2_subtitle',
-    image: '/assets/images/banner-02.jpg',
+    video: asset('/assets/videos/bahri-hero-logistics.mp4'),
     color: '#004488'
   },
   {
     titleKey: 'home.slide3_title',
     subtitleKey: 'home.slide3_subtitle',
-    image: '/assets/images/banner-03.jpg',
+    video: asset('/assets/videos/bahri-hero-chem.mp4'),
     color: '#002244'
   }
 ];
 
 const units = [
-  { id: 'oil', nameKey: 'home.oil_name', descKey: 'home.oil_desc', image: '/assets/images/oil.jpg' },
-  { id: 'logistics', nameKey: 'home.logistics_name', descKey: 'home.logistics_desc', image: '/assets/images/logistics.jpg' },
-  { id: 'chemicals', nameKey: 'home.chemicals_name', descKey: 'home.chemicals_desc', image: '/assets/images/chemicals.jpg' },
-  { id: 'drybulk', nameKey: 'home.drybulk_name', descKey: 'home.drybulk_desc', image: '/assets/images/dry-bulk.jpg' },
-  { id: 'ship-mgmt', nameKey: 'home.ship_mgmt_name', descKey: 'home.ship_mgmt_desc', image: '/assets/images/ship-management.jpg' },
-  { id: 'marine', nameKey: 'home.marine_name', descKey: 'home.marine_desc', image: '/assets/images/marine.jpg' }
+  { id: 'oil', nameKey: 'home.oil_name', descKey: 'home.oil_desc', image: asset('/assets/images/bahri-oil.svg') },
+  { id: 'logistics', nameKey: 'home.logistics_name', descKey: 'home.logistics_desc', image: asset('/assets/images/bahri-cargo.svg') },
+  { id: 'chemicals', nameKey: 'home.chemicals_name', descKey: 'home.chemicals_desc', image: asset('/assets/images/bahri-chemical.svg') },
+  { id: 'drybulk', nameKey: 'home.drybulk_name', descKey: 'home.drybulk_desc', image: asset('/assets/images/bahri-drybulk.svg') },
+  { id: 'ship-mgmt', nameKey: 'home.ship_mgmt_name', descKey: 'home.ship_mgmt_desc', image: asset('/assets/images/bahri-ship-mgmt.svg') },
+  { id: 'marine', nameKey: 'home.marine_name', descKey: 'home.marine_desc', image: asset('/assets/images/bahri-marine.svg') }
 ];
 
 const Home: React.FC = () => {
@@ -52,8 +56,13 @@ const Home: React.FC = () => {
           <div 
             key={index} 
             className={`${styles.slide} ${index === currentSlide ? styles.active : ''}`}
-            style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${slide.image})` }}
           >
+            {slide.video && (
+              <>
+                <video className={styles.slideVideo} src={slide.video} autoPlay muted loop playsInline />
+                <div className={styles.slideOverlay} />
+              </>
+            )}
             <div className="container">
               <div className={styles.slideContent}>
                 <span className={styles.slideCounter}>0{index + 1}/0{slides.length}</span>

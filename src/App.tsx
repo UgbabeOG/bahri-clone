@@ -37,7 +37,7 @@ const App: React.FC = () => {
                     }}
                   >
                     <img
-                      src="/assets/images/banner-04.jpg"
+                      src={import.meta.env.BASE_URL + 'assets/images/banner-bahri-01.jpg'}
                       alt="NexaCrude global shipping network"
                       style={{
                         width: "100%",
@@ -63,25 +63,25 @@ const App: React.FC = () => {
                   >
                     {[
                       {
-                        img: "/assets/images/ship-management.jpg",
+                        img: import.meta.env.BASE_URL + 'assets/images/bahri-ship-mgmt.svg',
                         alt: "Advanced ship management",
                         title: t("about.mission_title"),
                         text: t("about.mission_text"),
                       },
                       {
-                        img: "/assets/images/logistics.jpg",
+                        img: import.meta.env.BASE_URL + 'assets/images/bahri-cargo.svg',
                         alt: "Global logistics operations",
                         title: t("about.vision_title"),
                         text: t("about.vision_text"),
                       },
                       {
-                        img: "/assets/images/oil.jpg",
+                        img: import.meta.env.BASE_URL + 'assets/images/bahri-oil.svg',
                         alt: "Sustainable energy transport",
                         title: t("about.values_title"),
                         text: t("about.values_text"),
                       },
                       {
-                        img: "/assets/images/marine.jpg",
+                        img: import.meta.env.BASE_URL + 'assets/images/bahri-marine.svg',
                         alt: "Marine excellence and sustainability",
                         title: t("about.sustainability_title"),
                         text: t("about.sustainability_text"),
@@ -124,9 +124,9 @@ const App: React.FC = () => {
                   <section className="units-hero">
                     <div className="units-hero-card">
                       <img
-                        src="/assets/images/banner-03.jpg"
-                        alt="NexaCrude business units overview"
-                      />
+                          src={import.meta.env.BASE_URL + 'assets/images/banner-bahri-01.jpg'}
+                          alt="NexaCrude business units overview"
+                        />
                     </div>
                     <div className="units-hero-text">
                       <span className="eyebrow">NexaCrude Units</span>
@@ -137,37 +137,37 @@ const App: React.FC = () => {
                   <div className="units-grid">
                     {[
                       {
-                        img: "/assets/images/oil.jpg",
+                        img: import.meta.env.BASE_URL + 'assets/images/bahri-oil.svg',
                         alt: "Oil logistics and energy transport",
                         title: t("home.oil_name"),
                         desc: t("units.oil_desc"),
                       },
                       {
-                        img: "/assets/images/logistics.jpg",
+                        img: import.meta.env.BASE_URL + 'assets/images/bahri-cargo.svg',
                         alt: "Integrated shipping logistics",
                         title: t("home.logistics_name"),
                         desc: t("units.logistics_desc"),
                       },
                       {
-                        img: "/assets/images/chemicals.jpg",
+                        img: import.meta.env.BASE_URL + 'assets/images/bahri-chemical.svg',
                         alt: "Chemical supply-chain services",
                         title: t("home.chemicals_name"),
                         desc: t("units.chemicals_desc"),
                       },
                       {
-                        img: "/assets/images/dry-bulk.jpg",
+                        img: import.meta.env.BASE_URL + 'assets/images/bahri-drybulk.svg',
                         alt: "Dry bulk cargo transport",
                         title: t("home.drybulk_name"),
                         desc: t("units.drybulk_desc"),
                       },
                       {
-                        img: "/assets/images/ship-management.jpg",
+                        img: import.meta.env.BASE_URL + 'assets/images/bahri-ship-mgmt.svg',
                         alt: "Ship management and fleet operations",
                         title: t("home.ship_mgmt_name"),
                         desc: t("units.ship_mgmt_desc"),
                       },
                       {
-                        img: "/assets/images/marine.jpg",
+                        img: import.meta.env.BASE_URL + 'assets/images/bahri-marine.svg',
                         alt: "Marine services and port operations",
                         title: t("home.marine_name"),
                         desc: t("units.marine_desc"),
